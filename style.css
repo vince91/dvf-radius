@@ -1,0 +1,22 @@
+@import "ol/ol.css";
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#map {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#radius {
+    padding: 10px;
+    position: absolute;
+    background-color: white;
+    right: 10px;
+    top: 10px;
+}

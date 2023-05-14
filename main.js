@@ -2,7 +2,7 @@ import './style.css';
 import {Feature, Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
-import {fromLonLat, Projection, toLonLat} from 'ol/proj';
+import {fromLonLat, Projection, toLonLat, getPointResolution} from 'ol/proj';
 import {Circle, LineString, Point} from "ol/geom";
 import {getLength} from "ol/sphere";
 import VectorSource from "ol/source/Vector";
@@ -34,8 +34,9 @@ map.on('click', function (e) {
     const radius = parseFloat(value);
 
     // Create a circle feature
-    const lonlat = toLonLat(e.coordinate)
-    const circle = new Circle(e.coordinate, radius)
+    const lonLat = toLonLat(e.coordinate)
+    const resolution = getPointResolution(map.getView().getProjection(), 1, e.coordinate);
+    const circle = new Circle(e.coordinate, radius / resolution);
     const feature = new Feature(circle);
     const features = [feature];
 
@@ -44,7 +45,7 @@ map.on('click', function (e) {
     for (const mutation of mutations) {
         for (const parcel of mutation[5]) {
             const parcelLonLat = [parcel[2], parcel[1]];
-            const line = new LineString([lonlat, parcelLonLat]);
+            const line = new LineString([lonLat, parcelLonLat]);
             const distance = getLength(line, {projection: Geographic});
             if (distance <= radius) {
                 filteredMutations.push(mutation)

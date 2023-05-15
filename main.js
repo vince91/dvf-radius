@@ -54,13 +54,44 @@ map.on('click', function (e) {
         }
     }
 
-    // Add points for each parcel to the features
+    const table = document.querySelector("tbody");
+    const rowCount = table.rows.length;
+    for (let i = rowCount - 1; i >= 0; i--) {
+        table.deleteRow(i);
+    }
+
+    const pricesPerSquareMeter = [];
     for (const mutation of filteredMutations) {
+        // Populate the table
+        const row = table.insertRow();
+        row.insertCell(0).innerHTML = mutation[0];
+        row.insertCell(1).innerHTML = mutation[2].toLocaleString();
+        row.insertCell(2).innerHTML = mutation[4].toLocaleString();
+        row.insertCell(3).innerHTML = mutation[3].toLocaleString();
+        const pricePerSquareMeter = ~~(mutation[2] / mutation[4]);
+        row.insertCell(4).innerHTML = pricePerSquareMeter.toLocaleString();
+
+        pricesPerSquareMeter.push(pricePerSquareMeter);
+
+        // Add points for each parcel to the features
         for (const parcel of mutation[5]) {
             const parcelLonLat = fromLonLat([parcel[2], parcel[1]]);
             const feature = new Feature(new Point(parcelLonLat));
             features.push(feature);
         }
+    }
+
+    // Update count, average and median
+    document.querySelector("#count > span").innerHTML = filteredMutations.length.toLocaleString();
+    if (pricesPerSquareMeter.length > 0) {
+        pricesPerSquareMeter.sort((a, b) => a - b);
+        const average = pricesPerSquareMeter.reduce((a, b) => a + b, 0) / pricesPerSquareMeter.length;
+        const median = pricesPerSquareMeter[Math.floor(pricesPerSquareMeter.length / 2)];
+        document.querySelector("#average > span").innerHTML = (~~average).toLocaleString();
+        document.querySelector("#median > span").innerHTML = (~~median).toLocaleString();
+    } else {
+        document.querySelector("#average > span").innerHTML = "-";
+        document.querySelector("#median > span").innerHTML = "-";
     }
 
     if (map.getAllLayers().length > 1) {
@@ -70,5 +101,6 @@ map.on('click', function (e) {
     const source = new VectorSource({features: features});
     const layer = new VectorLayer({source: source});
     map.addLayer(layer);
+
 });
 

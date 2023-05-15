@@ -3,6 +3,7 @@
 html, body {
     margin: 0;
     height: 100%;
+    font-family: sans-serif;
 }
 
 #map {
@@ -19,4 +20,32 @@ html, body {
     background-color: white;
     right: 10px;
     top: 10px;
+    border-radius: 5px;
+}
+
+#mutations {
+    max-height: 50vh;
+    padding: 10px;
+    position: absolute;
+    background-color: white;
+    right: 10px;
+    top: 62px;
+    border-radius: 5px;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid gray;
+}
+
+td, th {
+    padding: 10px;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
 }

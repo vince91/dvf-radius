@@ -11,25 +11,40 @@
 <div id="map"></div>
 <div id="radius">
     <label for="name"><b>Radius (m):</b></label>
-    <input type="number" id="name" name="name" required value="3000">
+    <input type="number" id="name" value="3000">
 </div>
 <div id="mutations">
-    <div id="count"><b>Count:</b> <span></span></div>
-    <div id="median"><b>Median:</b> <span></span></div>
-    <div id="average"><b>Average:</b> <span></span></div>
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Value (€)</th>
-            <th>Building (m²)</th>
-            <th>Land (m²)</th>
-            <th>Price per m² (€)</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <section id="regression">
+        <h1>Regression</h1>
+        <div id="regression-content">
+            <form>
+                <label for="land"><b>Land (m²):</b></label>
+                <input type="number" id="land">
+                <label for="building"><b>Building (m²):</b></label>
+                <input type="number" id="building">
+            </form>
+            <div><b>Prediction:</b> <span></span></div>
+        </div>
+    </section>
+    <section>
+        <h1>Mutations</h1>
+        <div id="count"><b>Count:</b> <span></span></div>
+        <div id="median"><b>Median:</b> <span></span></div>
+        <div id="average"><b>Average:</b> <span></span></div>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Value (€)</th>
+                <th>Building (m²)</th>
+                <th>Land (m²)</th>
+                <th>Price per m² (€)</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
 </div>
 </body>
 </html>

@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.3.0",
   "private": true,
   "dependencies": {
-    "ol": "^7.3.0",
-    "ol-ext": "^4.0.8"
+    "mathjs": "^11.8.0",
+    "ol": "^7.3.0"
   },
   "devDependencies": {
     "vite": "^4.3.5"

@@ -2,22 +2,24 @@ import './style.css';
 import {Feature, Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
-import {fromLonLat, Projection, toLonLat, getPointResolution} from 'ol/proj';
+import {fromLonLat, getPointResolution, Projection, toLonLat} from 'ol/proj';
 import {Circle, LineString, Point} from "ol/geom";
 import {getLength} from "ol/sphere";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
+import {matrix, transpose, multiply, inv} from "mathjs";
 
 // Fetch the mutations from the public folder
 let mutations = [];
-
 (async () => {
     const resp = await fetch("/dvf-radius/mutations.json");
     mutations = await resp.json();
 
     // For testing purposes
-    updateApp([-66578.58011010953, 5596552.261800042], 3000);
+    // updateApp([-66578.58011010953, 5596552.261800042], 3000);
 })();
+
+let regressionParameters = null;
 
 // Create the map
 const Geographic = new Projection("EPSG:4326");
@@ -53,6 +55,24 @@ function filterMutations(center, radius) {
 }
 
 /**
+ * Computes the linear regression parameters
+ * @param x1 Land area
+ * @param x2 Building area
+ * @param y Price
+ */
+function linearRegression(x1, x2, y) {
+    // Build X and Y
+    const ones = Array(x1.length).fill(1);
+    const x = matrix([ones, x1, x2]);
+
+    // Compute (X^T * X)^-1 * X^T * Y
+    const xT = transpose(x);
+    const xTxInv = inv(multiply(x, xT));
+    const b = multiply(y, multiply(xT, xTxInv));
+    regressionParameters = b.toArray();
+}
+
+/**
  * Update the app with the new center and radius
  */
 function updateApp(center, radius) {
@@ -70,6 +90,10 @@ function updateApp(center, radius) {
         table.deleteRow(i);
     }
 
+    const x1 = [];
+    const x2 = [];
+    const y = [];
+
     const pricesPerSquareMeter = [];
     for (const mutation of filteredMutations) {
         // Populate the table
@@ -82,6 +106,9 @@ function updateApp(center, radius) {
         row.insertCell(4).innerHTML = pricePerSquareMeter.toLocaleString();
 
         pricesPerSquareMeter.push(pricePerSquareMeter);
+        x1.push(mutation[4]);
+        x2.push(mutation[3]);
+        y.push(mutation[2]);
 
         // Add points for each parcel to the features
         for (const parcel of mutation[5]) {
@@ -90,6 +117,12 @@ function updateApp(center, radius) {
             features.push(feature);
         }
     }
+
+    if (filteredMutations.length > 0) {
+        linearRegression(x1, x2, y);
+    }
+
+    updatePrediction();
 
     // Update count, average and median
     document.querySelector("#count > span").innerHTML = filteredMutations.length.toLocaleString();
@@ -116,7 +149,32 @@ function updateApp(center, radius) {
 map.on('click', function (e) {
     const value = document.querySelector("#radius input").value;
     const radius = parseFloat(value);
-    console.log(e.coordinate, radius);
     updateApp(e.coordinate, radius);
 });
 
+
+const landInput = document.querySelector("input[id=land]");
+const buildingInput = document.querySelector("input[id=building]");
+const predictionSpan = document.querySelector("#regression span");
+
+landInput.addEventListener("input", function (e) {
+    updatePrediction();
+});
+
+
+buildingInput.addEventListener("input", function (e) {
+    updatePrediction();
+});
+
+function updatePrediction() {
+    if (landInput.value === "" || buildingInput.value === "" || regressionParameters === null) {
+        predictionSpan.innerHTML = "-";
+        return;
+    }
+    const landArea = parseFloat(landInput.value);
+    const buildingArea = parseFloat(buildingInput.value);
+
+    const prediction = (regressionParameters[0] + regressionParameters[1] * buildingArea + regressionParameters[2] * landArea)
+
+    predictionSpan.innerHTML = prediction.toLocaleString();
+}

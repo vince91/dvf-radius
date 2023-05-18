@@ -28,11 +28,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["mathjs", "npm:11.8.0"],\
             ["ol", "npm:7.3.0"],\
-            ["ol-ext", "virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.0.8"],\
             ["vite", "virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.3.5"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["@babel/runtime", [\
+        ["npm:7.21.5", {\
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.21.5-7d058028a3-358f2779d3.zip/node_modules/@babel/runtime/",\
+          "packageDependencies": [\
+            ["@babel/runtime", "npm:7.21.5"],\
+            ["regenerator-runtime", "npm:0.13.11"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@esbuild/android-arm", [\
@@ -479,6 +489,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["complex.js", [\
+        ["npm:2.1.1", {\
+          "packageLocation": "./.yarn/cache/complex.js-npm-2.1.1-2beaccef20-a0802cc3f0.zip/node_modules/complex.js/",\
+          "packageDependencies": [\
+            ["complex.js", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["concat-map", [\
         ["npm:0.0.1", {\
           "packageLocation": "./.yarn/cache/concat-map-npm-0.0.1-85a921b7ee-902a9f5d89.zip/node_modules/concat-map/",\
@@ -529,6 +548,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["decimal.js", [\
+        ["npm:10.4.3", {\
+          "packageLocation": "./.yarn/cache/decimal.js-npm-10.4.3-e7d483387c-796404dcfa.zip/node_modules/decimal.js/",\
+          "packageDependencies": [\
+            ["decimal.js", "npm:10.4.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["delegates", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/delegates-npm-1.0.0-9b1942d75f-a51744d9b5.zip/node_modules/delegates/",\
@@ -552,8 +580,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["dvf-radius", "workspace:."],\
+            ["mathjs", "npm:11.8.0"],\
             ["ol", "npm:7.3.0"],\
-            ["ol-ext", "virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.0.8"],\
             ["vite", "virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.3.5"]\
           ],\
           "linkType": "SOFT"\
@@ -632,6 +660,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@esbuild/win32-arm64", "npm:0.17.18"],\
             ["@esbuild/win32-ia32", "npm:0.17.18"],\
             ["@esbuild/win32-x64", "npm:0.17.18"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["escape-latex", [\
+        ["npm:1.2.0", {\
+          "packageLocation": "./.yarn/cache/escape-latex-npm-1.2.0-1481ca81a7-73a787319f.zip/node_modules/escape-latex/",\
+          "packageDependencies": [\
+            ["escape-latex", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fraction.js", [\
+        ["npm:4.2.0", {\
+          "packageLocation": "./.yarn/cache/fraction.js-npm-4.2.0-28efe4afc7-8c76a6e21d.zip/node_modules/fraction.js/",\
+          "packageDependencies": [\
+            ["fraction.js", "npm:4.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -887,6 +933,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["javascript-natural-sort", [\
+        ["npm:0.7.1", {\
+          "packageLocation": "./.yarn/cache/javascript-natural-sort-npm-0.7.1-9018625996-161e2c512c.zip/node_modules/javascript-natural-sort/",\
+          "packageDependencies": [\
+            ["javascript-natural-sort", "npm:0.7.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["json-stringify-pretty-compact", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/json-stringify-pretty-compact-npm-2.0.0-6fbd5abdc9-b476aa4ce2.zip/node_modules/json-stringify-pretty-compact/",\
@@ -952,6 +1007,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mapbox-to-css-font-npm-2.4.1-3ab86d3bbd-db9e9003d8.zip/node_modules/mapbox-to-css-font/",\
           "packageDependencies": [\
             ["mapbox-to-css-font", "npm:2.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["mathjs", [\
+        ["npm:11.8.0", {\
+          "packageLocation": "./.yarn/cache/mathjs-npm-11.8.0-b44b263405-09716946b0.zip/node_modules/mathjs/",\
+          "packageDependencies": [\
+            ["mathjs", "npm:11.8.0"],\
+            ["@babel/runtime", "npm:7.21.5"],\
+            ["complex.js", "npm:2.1.1"],\
+            ["decimal.js", "npm:10.4.3"],\
+            ["escape-latex", "npm:1.2.0"],\
+            ["fraction.js", "npm:4.2.0"],\
+            ["javascript-natural-sort", "npm:0.7.1"],\
+            ["seedrandom", "npm:3.0.5"],\
+            ["tiny-emitter", "npm:2.1.0"],\
+            ["typed-function", "npm:4.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1156,28 +1229,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["ol-ext", [\
-        ["npm:4.0.8", {\
-          "packageLocation": "./.yarn/cache/ol-ext-npm-4.0.8-73a7c53d13-d4c5cb3681.zip/node_modules/ol-ext/",\
-          "packageDependencies": [\
-            ["ol-ext", "npm:4.0.8"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.0.8", {\
-          "packageLocation": "./.yarn/__virtual__/ol-ext-virtual-37e14b29d9/0/cache/ol-ext-npm-4.0.8-73a7c53d13-d4c5cb3681.zip/node_modules/ol-ext/",\
-          "packageDependencies": [\
-            ["ol-ext", "virtual:4a1fe9e49611074b499176d359bfbae19d9363fee115f261d1aef87dba78047420f2c697c2e3fb82ba555cf31c10b701d93a6af34a6804ef54578092a7029635#npm:4.0.8"],\
-            ["@types/ol", null],\
-            ["ol", "npm:7.3.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/ol",\
-            "ol"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["ol-mapbox-style", [\
         ["npm:9.7.0", {\
           "packageLocation": "./.yarn/cache/ol-mapbox-style-npm-9.7.0-3abccad297-0c03c997a1.zip/node_modules/ol-mapbox-style/",\
@@ -1350,6 +1401,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["regenerator-runtime", [\
+        ["npm:0.13.11", {\
+          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.11-90bf536060-27481628d2.zip/node_modules/regenerator-runtime/",\
+          "packageDependencies": [\
+            ["regenerator-runtime", "npm:0.13.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["resolve-protobuf-schema", [\
         ["npm:2.1.0", {\
           "packageLocation": "./.yarn/cache/resolve-protobuf-schema-npm-2.1.0-56c0d37a08-88fffab2a3.zip/node_modules/resolve-protobuf-schema/",\
@@ -1412,6 +1472,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/safer-buffer-npm-2.1.2-8d5c0b705e-cab8f25ae6.zip/node_modules/safer-buffer/",\
           "packageDependencies": [\
             ["safer-buffer", "npm:2.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["seedrandom", [\
+        ["npm:3.0.5", {\
+          "packageLocation": "./.yarn/cache/seedrandom-npm-3.0.5-6946e8f8db-728b56bc3b.zip/node_modules/seedrandom/",\
+          "packageDependencies": [\
+            ["seedrandom", "npm:3.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1567,6 +1636,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["minizlib", "npm:2.1.2"],\
             ["mkdirp", "npm:1.0.4"],\
             ["yallist", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tiny-emitter", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/tiny-emitter-npm-2.1.0-2a4d94f487-fbcfb51457.zip/node_modules/tiny-emitter/",\
+          "packageDependencies": [\
+            ["tiny-emitter", "npm:2.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["typed-function", [\
+        ["npm:4.1.0", {\
+          "packageLocation": "./.yarn/cache/typed-function-npm-4.1.0-fe0bfcf8e1-5d512a1350.zip/node_modules/typed-function/",\
+          "packageDependencies": [\
+            ["typed-function", "npm:4.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\

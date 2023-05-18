@@ -14,6 +14,9 @@ let mutations = [];
 (async () => {
     const resp = await fetch("/dvf-radius/mutations.json");
     mutations = await resp.json();
+
+    // For testing purposes
+    updateApp([-66578.58011010953, 5596552.261800042], 3000);
 })();
 
 // Create the map
@@ -29,18 +32,11 @@ const map = new Map({
     })
 });
 
-map.on('click', function (e) {
-    const value = document.querySelector("#radius input").value;
-    const radius = parseFloat(value);
-
-    // Create a circle feature
-    const lonLat = toLonLat(e.coordinate)
-    const resolution = getPointResolution(map.getView().getProjection(), 1, e.coordinate);
-    const circle = new Circle(e.coordinate, radius / resolution);
-    const feature = new Feature(circle);
-    const features = [feature];
-
-    // Filter the mutation if one of its parcels is within the circle
+/**
+ * Filter the mutations if one of its parcels is within the circle
+ */
+function filterMutations(center, radius) {
+    const lonLat = toLonLat(center);
     const filteredMutations = [];
     for (const mutation of mutations) {
         for (const parcel of mutation[5]) {
@@ -53,6 +49,20 @@ map.on('click', function (e) {
             }
         }
     }
+    return filteredMutations;
+}
+
+/**
+ * Update the app with the new center and radius
+ */
+function updateApp(center, radius) {
+    // Create a circle feature
+    const resolution = getPointResolution(map.getView().getProjection(), 1, center);
+    const circle = new Circle(center, radius / resolution);
+    const feature = new Feature(circle);
+    const features = [feature];
+
+    const filteredMutations = filterMutations(center, radius);
 
     const table = document.querySelector("tbody");
     const rowCount = table.rows.length;
@@ -101,6 +111,12 @@ map.on('click', function (e) {
     const source = new VectorSource({features: features});
     const layer = new VectorLayer({source: source});
     map.addLayer(layer);
+}
 
+map.on('click', function (e) {
+    const value = document.querySelector("#radius input").value;
+    const radius = parseFloat(value);
+    console.log(e.coordinate, radius);
+    updateApp(e.coordinate, radius);
 });
 

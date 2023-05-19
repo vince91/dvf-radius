@@ -98,7 +98,7 @@ function updateApp(center, radius) {
     for (const mutation of filteredMutations) {
         // Populate the table
         const row = table.insertRow();
-        row.insertCell(0).innerHTML = mutation[0];
+        row.insertCell(0).innerHTML = mutation[1];
         row.insertCell(1).innerHTML = mutation[2].toLocaleString();
         row.insertCell(2).innerHTML = mutation[4].toLocaleString();
         row.insertCell(3).innerHTML = mutation[3].toLocaleString();

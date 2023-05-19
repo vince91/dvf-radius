@@ -61,11 +61,6 @@ for mutation in filtered_mutations.values():
             row["id_parcelle"],
             float(row["latitude"]),
             float(row["longitude"]),
-#             row["adresse_numero"],
-#             row["adresse_suffixe"],
-#             row["adresse_nom_voie"],
-#             row["code_commune"],
-#             row["nom_commune"],
             [],
             [],
         ]

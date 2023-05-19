@@ -146,8 +146,16 @@ function updateApp(center, radius) {
     map.addLayer(layer);
 }
 
+const radiusInput = document.querySelector("#radius input");
+
+// Restore the radius from the local storage
+const radius = localStorage.getItem("radius");
+if (radius !== null) {
+    radiusInput.value = radius;
+}
+
 map.on('click', function (e) {
-    const value = document.querySelector("#radius input").value;
+    const value = radiusInput.value;
     const radius = parseFloat(value);
     updateApp(e.coordinate, radius);
 });
@@ -164,6 +172,11 @@ landInput.addEventListener("input", function (e) {
 
 buildingInput.addEventListener("input", function (e) {
     updatePrediction();
+});
+
+radiusInput.addEventListener("input", function (e) {
+    const value = radiusInput.value;
+    localStorage.setItem("radius", value);
 });
 
 function updatePrediction() {
